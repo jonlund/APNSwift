@@ -11,7 +11,7 @@ let package = Package(
     ],
     products: [
         .executable(name: "APNSExample", targets: ["APNSExample"]),
-        .library(name: "APNS", targets: ["APNS"]),
+        .library(name: "APNSwift", targets: ["APNS"]),
         .library(name: "APNSCore", targets: ["APNSCore"]),
         .library(name: "APNSURLSession", targets: ["APNSURLSession"]),
         .library(name: "APNSTestServer", targets: ["APNSTestServer"]),
