@@ -104,6 +104,7 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: 
     ///   - dismissalDate: Timestamp when to dismiss live notification when sent with `end`, if in the past
     ///    dismiss immediately
     public init(
+		message: LiveActivityAlert?,
         expiration: APNSNotificationExpiration,
         priority: APNSPriority,
         appID: String,
@@ -114,6 +115,7 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: 
         apnsID: UUID? = nil
     ) {
         self.init(
+			message: message,
             expiration: expiration,
             priority: priority,
             topic: appID + ".push-type.liveactivity",
@@ -140,6 +142,7 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: 
     ///   - dismissalDate: Timestamp when to dismiss live notification when sent with `end`, if in the past
     ///    dismiss immediately
     public init(
+		message: LiveActivityAlert?,
         expiration: APNSNotificationExpiration,
         priority: APNSPriority,
         topic: String,
@@ -153,7 +156,8 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: 
             timestamp: timestamp,
             event: event.rawValue,
             contentState: contentState,
-            dismissalDate: dismissalDate.dismissal
+            dismissalDate: dismissalDate.dismissal,
+			alert: message
         )
         self.apnsID = apnsID
         self.expiration = expiration

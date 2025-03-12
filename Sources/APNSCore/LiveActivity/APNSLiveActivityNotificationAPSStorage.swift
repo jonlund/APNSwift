@@ -12,6 +12,18 @@
 //
 //===----------------------------------------------------------------------===//
 
+public struct LiveActivityAlert: Encodable, Sendable {
+	let title: String?
+	let body: String?
+	let sound: String?
+	
+	public init(title: String?, body: String?, sound: String?) {
+		self.title = title
+		self.body = body
+		self.sound = sound
+	}
+}
+
 struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable>: Encodable {
     enum CodingKeys: String, CodingKey {
         case timestamp = "timestamp"
@@ -19,21 +31,25 @@ struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable
         case contentState = "content-state"
         case dismissalDate = "dismissal-date"
     }
+	
 
     var timestamp: Int
     var event: String
     var contentState: ContentState
     var dismissalDate: Int?
+	var alert: LiveActivityAlert?
 
     init(
         timestamp: Int,
         event: String,
         contentState: ContentState,
-        dismissalDate: Int?
+        dismissalDate: Int?,
+		alert: LiveActivityAlert? = nil
     ) {
         self.timestamp = timestamp
         self.contentState = contentState
         self.dismissalDate = dismissalDate
         self.event = event
+		self.alert = alert
     }
 }
